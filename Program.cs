@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lucene.Net.QueryParsers;
+using Lucene.Net.Search;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,13 @@ namespace Demo1
     {
         static void Main(string[] args)
         {
+            InitFullIndex();
 
+            var result = LuceneSearch.Search("Hong");
+            foreach(var r in result)
+            {
+                Console.WriteLine(r.Id);
+            }
         }
 
         static void InitFullIndex()
@@ -27,5 +35,9 @@ namespace Demo1
             // add record to Lucene search index
             LuceneSearch.AddUpdateLuceneIndex(new_record);
         }
+
+        
+
+        
     }
 }
